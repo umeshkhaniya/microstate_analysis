@@ -20,7 +20,8 @@ One of the big challenges is recording all possible millions of microstates in r
 
 ## Script requirement:
   - ms_analysis.py: This script loads the input file.
-  - microstate_analysis.ipynb : This is for post processing.
+  - microstate_analysis.ipynb : This is for post processing of microstates.
+  - energy_calculation_ms_count.ipynb: This is for calculating Free energy and Entropy
   
   
  
