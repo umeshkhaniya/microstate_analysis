@@ -1,28 +1,35 @@
-# Microstate Analysis of Protein
-This is the tutorial for microstate analysis in the Monte Carlo Sampling. Main idea of this tool is novel way of understanding the charge states of protein molecules. During the MCCE pdb run,  millions of microstate are generated and goal here is to analyse microstates and find out the right protonation state for Molecular Dynamics simulation. In this tutorial, small system 4lzt at pH = 5 is taken for the tutorial propose.  
+# Microstate Analysis of a Protein
+This is a tutorial for microstate analysis in Monte Carlo Sampling.
+The main idea of this tool is to provide a novel way of understanding the charge states of protein molecules. During the MCCE PDB run, millions of microstates are generated. The goal here is to analyze these microstates and determine the correct protonation state for Molecular Dynamics simulations. In this tutorial, a small system—4lzt at pH 5—is used for demonstration purposes.
 
 # Introduction:
-Proteins are dynamic objects and it is well established that they exist in a distribution of conformations.  Conformationaion distributions are required for function, but they are also inevitable given the low barriers to many of the motions proteins can undergo. Thus, a protein with N atoms has 3N-6 vibrational modes to generate the conformational flexibility.       
-Monte Carlo sampling in MCCE uses Metropolis–Hastings algorithm to evaluate the microstate probability distribution. A microstate step is achieved by a residue conformer flip, that is, the conformer of a randomly chosen residue is switched to another conformer of its residue. Multi-flip is performed at 50% chance if some conformers of the chosen residue have big interactions with conformers in other residues. This is to allow concerted motion/ionization to have a fair chance to be evaluated. The Monte Carlo sampling in MCCE goes through annealing stage, reduction stage, and sampling stage. The annealing stage is to gradually reduce the temperature in the Boltzmann distribution function to the room temperature. This will ensure the statistics of microstates are only collected at the equilibrium even though the first randomly selected microstate may be quite off the equilibrium.   The reduction stage is to sample the microstates for a fair number of steps. The conformers that are never appeared in reduction stage are excluded from later sampling. After reduction, residues that have choice of conformers are “free” residues. Only in the sampling stage, the conformer occupancy and optionally the microstates are recorded.
+Proteins are dynamic molecules, and it is well established that they exist in a distribution of conformations. These conformational distributions are essential for function and are also inevitable due to the low energy barriers associated with many protein motions. A protein with N atoms has 3N−6 vibrational modes that contribute to its conformational flexibility.
+
+Monte Carlo sampling in MCCE uses the Metropolis–Hastings algorithm to evaluate the probability distribution of microstates. A microstate step involves flipping the conformer of a randomly chosen residue to another available conformer of that residue. In 50% of the cases, a multi-flip is performed if some conformers of the selected residue exhibit strong interactions with conformers in other residues. This approach allows for concerted motion or ionization to be fairly sampled.
+
+The Monte Carlo sampling process in MCCE consists of three stages: annealing, reduction, and sampling. The annealing stage gradually lowers the temperature in the Boltzmann distribution function to room temperature, ensuring that microstate statistics are collected only at equilibrium, even if the initial microstate is far from it. The reduction stage samples microstates over a sufficient number of steps, excluding any conformers that never appear. After reduction, residues with alternative conformers are considered "free" residues. Only during the sampling stage are conformer occupancies and, optionally, microstates recorded
 
 
 
 
 
-## Input File:
+## Input Files:
 - head3.lst 
 - ms_out file
 - sum_crg.out
 
-### ms_out file information
-One of the big challenges is recording all possible millions of microstates in readable format. MCCE algorithm has several approximations that are advantageous for the microstate analysis.  One is that conformers are premade so that we can label them for each microstate.  Also, that only a few residues are changed on each step so that we need to only record the conformers that have changes when a microstate is accepted. In the beginning of file, fixed conformers and free conformers ids are saved. In first line of each Monte Carlo run, microstates of free conformers residues are recorded and the following each line in each step have information of enthalpy (Kcal/Mol) of system, total number of times that microstate stuck before accepting the new state called count, and conformers ids of residues that are flipping.
+### ms_out File Information
+One of the major challenges is recording all possible millions of microstates in a readable format. The MCCE algorithm includes several approximations that are advantageous for microstate analysis. One such approximation is that conformers are premade, allowing them to be labeled for each microstate. Additionally, only a few residues change at each step, so it is only necessary to record the conformers that have changed when a microstate is accepted.
+
+At the beginning of the file, the IDs of fixed and free conformers are saved. In the first line of each Monte Carlo run, the microstates of free conformer residues are recorded. Each subsequent line for every step includes the enthalpy (in kcal/mol) of the system, the number of times the microstate was repeated before a new state was accepted (called the count), and the IDs of the conformers of residues that are flipping.
 
 
-## Script requirement:
+## Script Requirements:
   - ms_analysis.py: This script loads the input file.
-  - microstate_analysis.ipynb : This is for post processing of microstates.
-  - energy_calculation_ms_count.ipynb: This is for calculating Free energy and Entropy.
-  - pdb_write_ms.ipynb: This is to write microsates into pdb file for visualization purpose.
+  - microstate_analysis.ipynb : Used for post-processing of microstates.
+  - energy_calculation_ms_count.ipynb: Calculates free energy and entropy.
+  - pdb_write_ms.ipynb: Writes microstates into a PDB file for visualization purposes.
+
   
   
   
