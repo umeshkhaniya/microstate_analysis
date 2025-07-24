@@ -1,6 +1,6 @@
 # Microstate Analysis of a Protein
 This is a tutorial for microstate analysis in Monte Carlo Sampling.
-The main idea of this tool is to provide a novel way of understanding the charge states of protein molecules. During the MCCE PDB run, millions of microstates are generated. The goal here is to analyze these microstates and determine the correct protonation state for Molecular Dynamics simulations. In this tutorial, a small system—4lzt at pH 5—is used for demonstration purposes.
+The main idea of this tool is to provide a novel way of understanding the charge states of protein molecules. During the MCCE PDB run, millions of microstates are generated. The goal here is to analyze these microstates and determine the correct protonation state for Molecular Dynamics simulations. In this tutorial, a small system-4lzt at pH 5—is used for demonstration purposes.
 
 # Introduction:
 Proteins are dynamic molecules, and it is well established that they exist in a distribution of conformations. These conformational distributions are essential for function and are also inevitable due to the low energy barriers associated with many protein motions. A protein with N atoms has 3N−6 vibrational modes that contribute to its conformational flexibility.
